@@ -4,32 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{box-sizing: border-box;font-family: Arial, Helvetica, sans-serif;}
+     #cards{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+
+     }
+</style>
 </head>
 <body>
-    <select id="cetegoryfilter">
+     <div id="container">
+        <div id="sidebar">
+    <select id="cetefilter">
         <option value="">all</option>
         <option>auto</option>
         <option>car</option>
         <option>truck</option>
         <option>bus</option>
     </select>
+   <input id="driver" placeholder="driver name">
+   <select id="avai">
+    <option value="">availablity</option>
+    <option value="true">available</option>
+    <option value="false">unavailable</option>
+   </select>
+    <button id=addbtn>add fleet</button>
+</div>
+
+
+ <div id ="main">
     <select id="availfilter">
         <option value="">all</option>
          <option value="true">available</option>
           <option value="false">not available</option>
     </select>
+
+    <button id="clearbtn">clear filter</button>
     <h3>add fleet</h3>
-    <input id="reg.no" placeholder="reg no">
+    <input id="reg" placeholder="reg no">
+   
     <select id="cate">
          <option>auto</option>
         <option>car</option>
         <option>truck</option>
         <option>bus</option>
     </select>
-    <input id="driver" placeholder="driver name">
+
+    <!-- <input id="driver" placeholder="driver name">
     <label>
         <input id="avail"> available
-    </label>
-    <button id=addbtn>add fleet</button>
+    </label> -->
+
+    <h3>fleet cards</h3>
+    <div id="cards"></div>
+    <!-- <button id=addbtn>add fleet</button> -->
+ </div>
+ </div>
 </body>
+ <script>
+    
+
+    let data = [];
+    let cardsdic = document.getElementById("cards");
+    let reginput = document.getElementById("reg");
+    let cateinput = document.getElementById("cate");
+    let driverinput = document.getElementById("driver");
+    let availinput = document.getElementById("avai;");
+    let catfilter = document.getElementById("cetefilter");
+    let avifilter = document.getElementById("availfilter");
+    let addinput= document.getElementById("addbtn");
+   let clearbt=document.getElementById("clearbtn")
+    addbtn.onclick = function (){
+         let reg = reginput.value;
+         let cate = cateinput.value;
+         let drv = driverinput.value;
+         let av= availinput.value;
+
+         if(!reg || !drv){
+            alert("Driver name cannot be empty.")
+          return;
+        }
+
+        data.push ({ id: Date.now(), reg, cate, drv, av});
+         reginput = "";
+         driverinput = "";
+         availinput = false;
+         render()
+    }
+     
+      catfilter.onchange = render;
+      avifilter = render;
+      clearbt.onclick = function (){
+        catfilter.value= "";
+        avifilter.value = "";
+        render();
+      };
+      
+    function render(){
+   cardsdic.innerHTML = "";
+
+   let list = data.filter(function (v){
+     if (catfilter.value && v.cate !== catfilter.value) return false;
+     if (avifilter.value !== ""){
+        let n = avifilter.value == "true";
+        if (v.av !== n) return false;
+     }
+     return true;
+   });
+    // list. forEach(function (v){
+    //     let card=document.getElementById("div");
+    //     card.className = "card"
+
+    //     card.innerHTML =
+    //     "<p>regno: +v.reg _</p>"
+    // })
+    } 
+    
+    </script>
 </html>
