@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         *{box-sizing: border-box;font-family: Arial, Helvetica, sans-serif;}
-     #cards{
+     #card{
         display: grid;
         grid-template-columns: repeat(3,1fr);
 
@@ -57,16 +57,16 @@
     </label> -->
 
     <h3>fleet cards</h3>
-    <div id="cards"></div>
+    <div id="card"></div>
     <!-- <button id=addbtn>add fleet</button> -->
  </div>
  </div>
 </body>
  <script>
-    
+    <img src=.main_evaluation/ques_1/vehi.png>
 
     let data = [];
-    let cardsdic = document.getElementById("cards");
+    let cardsdic = document.getElementById("card");
     let reginput = document.getElementById("reg");
     let cateinput = document.getElementById("cate");
     let driverinput = document.getElementById("driver");
@@ -118,8 +118,39 @@
 
     //     card.innerHTML =
     //     "<p>regno: +v.reg _</p>"
-    // })
-    } 
     
+let b1 = document.createElement("button");
+b1.textContent = "update driver";
+b1.onclick = function(){
+    let name = prompt("enter new driver name");
+    if (name == null) return;
+    name= name.trim();
+    if(name == ""){
+        alert("name cannot be empty");
+        return;
+    }
+    v.drv =name;
+    render();
+};
+let b2 = document.createElement("button");
+b2.textContent = "changeavail";
+b2.onclick =function(){
+    v.av == !v.av;
+    render();
+};
+
+let b3 = document.createElement("button");
+b3.textContent = "deletevehicle";
+b3.onclick = function(){
+    data - data.filter(function(x){
+        return x.id !== v.id;
+    })
+    render()
+    card.appendChild(b1)
+    cardsdic.appendChild(card);
+}
+    }
+
+
     </script>
 </html>
