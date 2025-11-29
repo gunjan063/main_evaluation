@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Login page</h2>
+    <input id="email" type="email" placeholder="email">
+    <input id="pass" type="password" placeholder="password">
+    <button id="loginbtn">login</button>
+     <p id="msg"></p>
+</body>
+<script>
+    let btn = document.getElementById("loginbtn");
+    btn.addEventListener("click", function() {
+        let email =  document.getElementById("email").value;
+        let pass =  document.getElementById("pass").value;
+
+        if(email == "admin@gmail.com" && pass == "admin1234") {
+            window.location.href = "admin.html";
+        } else {
+            document.getElementById("msg").innerText = "wrong email or password";
+
+        }
+        }       
+    );
+
+
+</script>
+</html>
